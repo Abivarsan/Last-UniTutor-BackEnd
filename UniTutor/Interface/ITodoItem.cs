@@ -1,4 +1,5 @@
-﻿using UniTutor.Model;
+﻿using UniTutor.DTO;
+using UniTutor.Model;
 
 namespace UniTutor.Interface
 {
@@ -10,7 +11,8 @@ namespace UniTutor.Interface
         Task<List<TodoItem>> GetByTutorIdAsync(int tutorId);
         Task<TodoItem> CreateAsync(TodoItem todoItem);
         Task<bool> DeleteAsync(int id);
-        Task<bool> UpdateAsync(TodoItem todoItem);
+        public Task UpdateAsync(TodoItem todoItem);
+       
 
 
     }

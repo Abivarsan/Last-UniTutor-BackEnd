@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UniTutor.DataBase;
+using UniTutor.DTO;
 using UniTutor.Interface;
 using UniTutor.Model;
 using static Org.BouncyCastle.Math.EC.ECCurve;
@@ -101,23 +102,13 @@ namespace UniTutor.Repository
             return true;
         }
 
-        public async Task<bool> UpdateAsync(TodoItem todoItem)
-        {
-            _DBcontext.Entry(todoItem).State = EntityState.Modified;
 
-            try
-            {
-                await _DBcontext.SaveChangesAsync();
-                return true;
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoItemExists(todoItem._id))
-                    return false;
-                else
-                    throw;
-            }
+        public async Task UpdateAsync(TodoItem todoItem)
+        {
+            _DBcontext.TodoItems.Update(todoItem);
+            await _DBcontext.SaveChangesAsync();
         }
+
 
         private bool TodoItemExists(int id)
         {

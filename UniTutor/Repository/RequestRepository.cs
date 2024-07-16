@@ -19,9 +19,6 @@ namespace UniTutor.Repository
         {
             _DBcontext = DBcontext;
             _config = config;
-            
-
-
         }
         public async Task<IEnumerable<Request>> GetAll()
         {
