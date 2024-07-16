@@ -111,9 +111,8 @@ namespace UniTutor.Controllers
             return NoContent();
         }
 
-        // PUT: api/Todos/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTodoStatus(int id, [FromBody] TodoUpdateDto updateTodoStatusDto)
+        public async Task<IActionResult> UpdateTodoStatus(int id)
         {
             var todoItem = await _todoItem.GetByIdAsync(id);
 
@@ -121,11 +120,21 @@ namespace UniTutor.Controllers
             {
                 return NotFound();
             }
+            if (todoItem.isCompleted)
+            {
+                todoItem.isCompleted = false;
+                await _todoItem.UpdateAsync(todoItem);
+            }
+            else
+            {
+                todoItem.isCompleted = true;
+                await _todoItem.UpdateAsync(todoItem);
 
-            // Map TodoUpdateDto to TodoItem
-            todoItem.isCompleted = updateTodoStatusDto.isCompleted;
+            }
+            // Update the status to completed
+            
 
-            await _todoItem.UpdateAsync(todoItem);
+            
 
             return Ok();
         }

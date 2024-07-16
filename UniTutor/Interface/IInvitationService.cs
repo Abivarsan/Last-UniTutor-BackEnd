@@ -4,7 +4,7 @@ namespace UniTutor.Interface
 {
     public interface IInvitationService
     {
-        void InviteFriend(InviteRequestDto request);
+        public bool InviteFriend(InviteRequestDto request);
         bool VerifyCode(VerifyCodeRequestDto request);
     }
 }

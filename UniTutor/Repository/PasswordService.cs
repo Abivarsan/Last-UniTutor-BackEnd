@@ -45,32 +45,9 @@ namespace UniTutor.Repository
             }
         }
 
-        //public async Task<bool> ResetPasswordAsync(string email, string verificationCode, string newPassword)
-        //{
-        //    var student = _student.GetByMail(email);
-        //    var tutor = _tutor.GetTutorByEmail(email);
 
-        //    if (student != null && student.VerificationCode == verificationCode)
-        //    {
-        //        // Update the password
-        //        PasswordHash ph = new PasswordHash();
-        //        student.password = ph.HashPassword(newPassword);
-        //        student.VerificationCode = null; // Clear the verification code after successful reset
-        //        await _student.Update(student);
-        //        return true;
-        //    }
-        //    else if (tutor != null && tutor.VerificationCode == verificationCode)
-        //    {
-        //        // Update the password
-        //        PasswordHash ph = new PasswordHash();
-        //        tutor.password = ph.HashPassword(newPassword);
-        //        tutor.VerificationCode = null; // Clear the verification code after successful reset
-        //        await _tutor.UpdateTutorAsync(tutor);
-        //        return true;
-        //    }
 
-        //    return false; // If no user matched or verification code didn't match
-        //}
+
         public async Task<bool> VerifyOtpAsync(string verificationCode)
         {
             var email = _tempEmailForVerification; // Use the stored email

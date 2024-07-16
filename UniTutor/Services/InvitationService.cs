@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore.Metadata;
 using UniTutor.DataBase;
 using UniTutor.DTO;
 using UniTutor.Interface;
@@ -18,10 +19,17 @@ namespace UniTutor.Services
             _emailService= emailService;
         }
 
-        public void InviteFriend(InviteRequestDto request)
+        public bool InviteFriend(InviteRequestDto request)
         {
+            var existingTutor = _DBcontext.Tutors.FirstOrDefault(t => t.universityMail == request.Email);
+            if (existingTutor != null)
+            {
+                Console.WriteLine($"Warning: The invited email '{request.Email}' is already registered as a tutor.");
+                return false; // Exit method indicating failure
+            }
+
             var verificationCode = Guid.NewGuid().ToString();
-            //send mail
+            // Send mail
 
             var emailSubject = "Invitation to Join UniTutor!";
             var emailMessage = $@"
@@ -38,7 +46,7 @@ namespace UniTutor.Services
                     background-color: lightblue; /* Changed to blue */
                 }}
                 .email-header {{
-                    background-color: blue; /* Changed to blue */
+                    background-color: #024A7B; /* Changed to blue */
                     color: white;
                     padding: 10px 20px;
                     text-align: center;
@@ -78,7 +86,7 @@ namespace UniTutor.Services
                 </body>
                 </html>";
 
-             _emailService.SendEmailAsync(request.Email, emailSubject, emailMessage);
+            _emailService.SendEmailAsync(request.Email, emailSubject, emailMessage);
 
             var invitation = new Invitation
             {
@@ -88,7 +96,10 @@ namespace UniTutor.Services
             };
             _DBcontext.Invitations.Add(invitation);
             _DBcontext.SaveChanges();
+
+            return true; // Return true indicating success
         }
+
 
         //    public bool VerifyCode(VerifyCodeRequestDto request)
         //    {

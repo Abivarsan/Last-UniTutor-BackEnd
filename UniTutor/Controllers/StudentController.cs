@@ -66,32 +66,32 @@ namespace UniTutor.Controllers
                         <html>
                         <head>
                         <style>
-                        body {{
-                            font-family: Arial, sans-serif;
-                            line-height: 1.6;
-                        }}
-                        .email-container {{
-                            width: 100%;
-                            padding: 20px;
-                            background-color: black;
-                        }}
-                        .email-header {{
-                            background-color: #4CAF50;
-                            color: white;
-                            padding: 10px 20px;
-                            text-align: center;
-                        }}
-                        .email-content {{
-                            background-color: white;
-                            padding: 20px;
-                            margin-top: 20px;
-                        }}
-                        .email-footer {{
-                            margin-top: 20px;
-                            text-align: center;
-                            font-size: 0.9em;
-                            color: #777;
-                        }}
+                            body {{
+                                font-family: Arial, sans-serif;
+                                line-height: 1.6;
+                            }}
+                            .email-container {{
+                                width: 100%;
+                                padding: 20px;
+                                background-color: lightblue; /* Changed to blue */
+                            }}
+                            .email-header {{
+                                background-color: #024A7B; /* Changed to blue */
+                                color: white;
+                                padding: 10px 20px;
+                                text-align: center;
+                            }}
+                            .email-content {{
+                                background-color: white;
+                                padding: 20px;
+                                margin-top: 20px;
+                            }}
+                            .email-footer {{
+                                margin-top: 20px;
+                                text-align: center;
+                                font-size: 0.9em;
+                                color: #777;
+                            }}
                          </style>
                          </head>
                          <body>
