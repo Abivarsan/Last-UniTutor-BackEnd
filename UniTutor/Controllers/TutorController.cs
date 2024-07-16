@@ -80,7 +80,7 @@ namespace UniTutor.Controllers
                         .email-container {{
                             width: 100%;
                             padding: 20px;
-                            background-color: black;
+                            background-color: lightblue;
                         }}
                         .email-header {{
                             background-color: #4CAF50;

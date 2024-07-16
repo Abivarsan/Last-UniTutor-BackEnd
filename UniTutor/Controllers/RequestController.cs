@@ -258,7 +258,7 @@ namespace UniTutor.Controllers
                             background-color: black;
                         }}
                         .email-header {{
-                            background-color: #4CAF50;
+                            background-color: blue;
                             color: white;
                             padding: 10px 20px;
                             text-align: center;
