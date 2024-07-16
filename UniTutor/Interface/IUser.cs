@@ -6,7 +6,7 @@ namespace UniTutor.Interface
     {
         Task<Tutor> GetTutorByIdAsync(int id);
         Task<Student> GetStudentByIdAsync(int id);
-        Task DeleteTutorAsync(Tutor tutor);
+        public Task DeleteTutorAsync(int tutorId);
         public  Task DeleteStudentAsync(int studentId);
     }
 }

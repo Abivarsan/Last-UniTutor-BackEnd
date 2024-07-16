@@ -24,54 +24,101 @@ namespace UniTutor.DataBase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure relationships and properties for each entity
+            //// Configure relationships and properties for each entity
 
-            // Example configuration for Student entity
+            //// Example configuration for Student entity
+            //modelBuilder.Entity<Student>()
+            //    .HasKey(s => s._id); // Assuming Id is the primary key
+
+            //// Example configuration for Tutor entity
+            //modelBuilder.Entity<Tutor>()
+            //    .HasKey(t => t._id); // Assuming Id is the primary key
+
+            //// Example configuration for Comment entity
+            //modelBuilder.Entity<Comment>()
+            //    .HasKey(c => c._id); // Assuming Id is the primary key
+
+            //// Example configuration for Transaction entity
+            //modelBuilder.Entity<Transaction>()
+            //    .HasKey(t => t.Id); // Assuming Id is the primary key
+            //modelBuilder.Entity<Transaction>()
+            //    .Property(t => t.Description)
+            //    .IsRequired(); // Example of required property
+
+            //// Configure relationships between entities
+            //modelBuilder.Entity<Student>()
+            //    .HasMany(s => s.Comments)
+            //    .WithOne(c => c.Student)
+            //    .HasForeignKey(c => c.stuId)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //modelBuilder.Entity<Tutor>()
+            //    .HasMany(t => t.Comments)
+            //    .WithOne(c => c.Tutor)
+            //    .HasForeignKey(c => c.tutId)
+            //    .OnDelete(DeleteBehavior.Cascade);
+
+            //// Configure Request entity relationship
+            //modelBuilder.Entity<Request>()
+            //    .HasOne(r => r.Tutor)
+            //    .WithMany(t => t.Requests)
+            //    .HasForeignKey(r => r.tutorId)
+            //    .OnDelete(DeleteBehavior.Restrict); // Change to Restrict or NoAction as needed
+
+            //modelBuilder.Entity<Transaction>()
+            //    .HasOne(t => t.Tutor)
+            //    .WithMany(tu => tu.Transactions)
+            //    .HasForeignKey(t => t.tutorId)
+            //    .OnDelete(DeleteBehavior.Restrict); // Specify the behavior here
+            //                                        // Configure relationships and other configurations
+
+
             modelBuilder.Entity<Student>()
-                .HasKey(s => s._id); // Assuming Id is the primary key
+        .HasKey(s => s._id);
 
-            // Example configuration for Tutor entity
             modelBuilder.Entity<Tutor>()
-                .HasKey(t => t._id); // Assuming Id is the primary key
+                .HasKey(t => t._id);
 
-            // Example configuration for Comment entity
             modelBuilder.Entity<Comment>()
-                .HasKey(c => c._id); // Assuming Id is the primary key
+                .HasKey(c => c._id);
 
-            // Example configuration for Transaction entity
             modelBuilder.Entity<Transaction>()
-                .HasKey(t => t.Id); // Assuming Id is the primary key
+                .HasKey(t => t.Id);
             modelBuilder.Entity<Transaction>()
                 .Property(t => t.Description)
-                .IsRequired(); // Example of required property
+                .IsRequired();
 
-            // Configure relationships between entities
             modelBuilder.Entity<Student>()
                 .HasMany(s => s.Comments)
                 .WithOne(c => c.Student)
                 .HasForeignKey(c => c.stuId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Tutor>()
                 .HasMany(t => t.Comments)
                 .WithOne(c => c.Tutor)
                 .HasForeignKey(c => c.tutId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Configure Request entity relationship
             modelBuilder.Entity<Request>()
                 .HasOne(r => r.Tutor)
                 .WithMany(t => t.Requests)
                 .HasForeignKey(r => r.tutorId)
-                .OnDelete(DeleteBehavior.Restrict); // Change to Restrict or NoAction as needed
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Request>()
+                .HasOne(r => r.Subject)
+                .WithMany(s => s.Requests)
+                .HasForeignKey(r => r.subjectId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Transaction>()
                 .HasOne(t => t.Tutor)
                 .WithMany(tu => tu.Transactions)
                 .HasForeignKey(t => t.tutorId)
-                .OnDelete(DeleteBehavior.Restrict); // Specify the behavior here
-                                                    // Configure relationships and other configurations
-           
+                .OnDelete(DeleteBehavior.Restrict);
+
+
 
 
             // Additional configurations for other relationships...
