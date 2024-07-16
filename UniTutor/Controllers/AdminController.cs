@@ -137,18 +137,39 @@ namespace UniTutor.Controllers
         //}
 
 
+        //[HttpDelete("Tutordetails/{id}")]
+        //public async Task<IActionResult> DeleteTutor(int id)
+        //{
+        //    var tutor = await _userRepository.GetTutorByIdAsync(id);
+        //    if (tutor == null)
+        //    {
+        //        return NotFound(new { success = false, message = "Tutor not found" });
+        //    }
+
+        //    await _userRepository.DeleteTutorAsync(tutor);
+        //    return Ok(new { success = true });
+        //}
+
         [HttpDelete("Tutordetails/{id}")]
         public async Task<IActionResult> DeleteTutor(int id)
         {
-            var tutor = await _userRepository.GetTutorByIdAsync(id);
-            if (tutor == null)
+            try
             {
-                return NotFound(new { success = false, message = "Tutor not found" });
+                await _userRepository.DeleteTutorAsync(id);
+                return NoContent();
             }
-
-            await _userRepository.DeleteTutorAsync(tutor);
-            return Ok(new { success = true });
+            catch (ArgumentException ex)
+            {
+                return Ok(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, new { message = "An error occurred while processing your request.", details = ex.Message });
+            }
         }
+
+
         [HttpDelete("Studentdetails/{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
         {
@@ -159,7 +180,7 @@ namespace UniTutor.Controllers
             }
             catch (ArgumentException ex)
             {
-                return NotFound(new { message = ex.Message });
+                return Ok(new { message = ex.Message });
             }
             catch (Exception ex)
             {
@@ -206,7 +227,7 @@ namespace UniTutor.Controllers
             }
             else
             {
-                return BadRequest("There is no student");
+                return BadRequest("There is no tutor");
             }
         }
        

@@ -20,6 +20,7 @@ namespace UniTutor.Model
         public int? stuId { get; set; }
         public int? tutId { get; set; }
 
+
         public Student Student { get; set; }
         public Tutor Tutor { get; set; }
 
