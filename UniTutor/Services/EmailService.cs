@@ -78,10 +78,62 @@ namespace UniTutor.Services
                 throw new ArgumentNullException(nameof(email), "Email cannot be null or empty.");
             }
 
-            var subject = "Password Reset Verification Code";
-            var body = $"Your verification code is: {verificationCode}";
+            var emailSubject = "Verification Code for UniTutor Account";
+            var emailMessage = $@"
+                <html>
+                <head>
+                <style>
+                    body {{
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                    }}
+                    .email-container {{
+                        width: 100%;
+                        padding: 20px;
+                        background-color: lightblue; /* Changed to blue */
+                    }}
+                    .email-header {{
+                        background-color: #024A7B; /* Changed to blue */
+                        color: white;
+                        padding: 10px 20px;
+                        text-align: center;
+                    }}
+                    .email-content {{
+                        background-color: white;
+                        padding: 20px;
+                        margin-top: 20px;
+                    }}
+                    .email-footer {{
+                        margin-top: 20px;
+                        text-align: center;
+                        font-size: 0.9em;
+                        color: #777;
+                    }}
+                    </style>
+                </head>
+                <body>
+                    <div class='email-container'>
+                        <div class='email-header'>
+                            <h1>UniTutor</h1>
+                        </div>
+                        <div class='email-content'>
+                            <p>Dear user,</p>
+                            <p>Welcome to UniTutor! Your verification code is:</p>
+                            <h2 style='text-align: center; background-color: #f0f0f0; padding: 10px; border-radius: 5px;'>{verificationCode}</h2>
+                            <p>Please use this code to verify your account. If you did not request this verification, please ignore this email.</p>
+                            <p>If you have any questions or need assistance, please feel free to contact our support team at <a href='mailto:support@unitutor.com'>support@unitutor.com</a>.</p>
+                            <p>Best regards,<br>UniTutor Team</p>
+                        </div>
+                        <div class='email-footer'>
+                            <p>This is an automated message, please do not reply directly to this email.</p>
+                            <p>If you have any questions, feel free to contact our support team at support@unitutor.com.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>";
 
-            await SendEmailAsync(email, subject, body);
+
+            await SendEmailAsync(email, emailSubject, emailMessage);
         }
     }
 }

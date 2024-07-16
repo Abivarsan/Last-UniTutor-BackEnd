@@ -67,7 +67,7 @@ namespace UniTutor.Controllers
                     Console.WriteLine("registration success");
                     //sending email 
 
-                    var emailSubject = "Your Tutoring Request has been Accepted!";
+                    var emailSubject = "Your Tutoring Request has been submitted successfully!";
 
                     var emailMessage = $@"
                         <html>
@@ -80,10 +80,10 @@ namespace UniTutor.Controllers
                         .email-container {{
                             width: 100%;
                             padding: 20px;
-                            background-color: lightblue;
+                            background-color: lightblue; /* Changed to blue */
                         }}
                         .email-header {{
-                            background-color: #4CAF50;
+                            background-color: #024A7B; /* Changed to blue */
                             color: white;
                             padding: 10px 20px;
                             text-align: center;
@@ -99,7 +99,7 @@ namespace UniTutor.Controllers
                             font-size: 0.9em;
                             color: #777;
                         }}
-                         </style>
+                        </style>
                          </head>
                          <body>
                          <div class='email-container'>
