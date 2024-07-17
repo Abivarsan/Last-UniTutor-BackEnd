@@ -4,6 +4,6 @@ namespace UniTutor.Interface
 {
     public interface IChartData
     {
-        Task<IEnumerable<ChartDataDto>> GetWeeklyChartDataAsync();
+        Task<IEnumerable<ChartDataDto>> GetMonthlyChartDataAsync();
     }
 }

@@ -14,39 +14,35 @@ namespace UniTutor.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<ChartDataDto>> GetWeeklyChartDataAsync()
+        public async Task<IEnumerable<ChartDataDto>> GetMonthlyChartDataAsync()
         {
-            var studentData = await _context.Students
-                .ToListAsync();
-
-            var tutorData = await _context.Tutors
-                .Where(t => t.Verified)
-                .ToListAsync();
+            var studentData = await _context.Students.ToListAsync();
+            var tutorData = await _context.Tutors.Where(t => t.Verified).ToListAsync();
 
             var studentGroups = studentData
-                .GroupBy(s => s.CreatedAt.DayOfWeek)
+                .GroupBy(s => s.CreatedAt.Month)
                 .Select(g => new
                 {
-                    DayOfWeek = g.Key.ToString(),
+                    Month = g.Key,
                     Students = g.Count()
                 });
 
             var tutorGroups = tutorData
-                .GroupBy(t => t.CreatedAt.DayOfWeek)
+                .GroupBy(t => t.CreatedAt.Month)
                 .Select(g => new
                 {
-                    DayOfWeek = g.Key.ToString(),
+                    Month = g.Key,
                     Tutors = g.Count()
                 });
 
             var combinedData = studentGroups
                 .GroupJoin(tutorGroups,
-                    s => s.DayOfWeek,
-                    t => t.DayOfWeek,
-                    (s, tGroup) => new { s.DayOfWeek, s.Students, Tutors = tGroup.FirstOrDefault()?.Tutors ?? 0 })
+                    s => s.Month,
+                    t => t.Month,
+                    (s, tGroup) => new { s.Month, s.Students, Tutors = tGroup.FirstOrDefault()?.Tutors ?? 0 })
                 .Select(d => new ChartDataDto
                 {
-                    DayOfWeek = d.DayOfWeek,
+                    Month = new DateTime(1, d.Month, 1).ToString("MMM"),
                     Students = d.Students,
                     Tutors = d.Tutors
                 }).ToList();

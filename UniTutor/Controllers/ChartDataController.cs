@@ -15,10 +15,10 @@ namespace UniTutor.Controllers
             _repository = repository;
         }
 
-        [HttpGet("weekly/AreaChart")]
-        public async Task<IActionResult> GetWeeklyChartData()
+        [HttpGet("monthly")]
+        public async Task<IActionResult> GetMonthlyChartData()
         {
-            var data = await _repository.GetWeeklyChartDataAsync();
+            var data = await _repository.GetMonthlyChartDataAsync();
             return Ok(data);
         }
     }

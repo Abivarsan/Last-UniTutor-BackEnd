@@ -162,6 +162,11 @@ namespace UniTutor.Controllers
 
             var loggedInTutor = _tutor.GetTutorByEmail(email);
 
+            if(loggedInTutor.isSuspended)
+            {
+                return Unauthorized("Your account was suspended by admin. Please contact the administrator.");
+            }
+
             // Check if tutor is verified
             if (!loggedInTutor.Verified)
             {

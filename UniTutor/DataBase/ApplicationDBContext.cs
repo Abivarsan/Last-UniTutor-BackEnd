@@ -118,6 +118,13 @@ namespace UniTutor.DataBase
                 .HasForeignKey(t => t.tutorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Subject>().HasQueryFilter(s => !s.Tutor.isSuspended);
+            modelBuilder.Entity<Comment>().HasQueryFilter(c => !c.Tutor.isSuspended);
+
+            modelBuilder.Entity<Request>().HasQueryFilter(r => !r.Student.isSuspended);
+            modelBuilder.Entity<Comment>().HasQueryFilter(c => !c.Student.isSuspended);
+
+
 
 
 
