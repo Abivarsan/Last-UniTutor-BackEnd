@@ -12,8 +12,8 @@ using UniTutor.DataBase;
 namespace UniTutor.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240716163505_last")]
-    partial class last
+    [Migration("20240717050007_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -474,12 +474,12 @@ namespace UniTutor.Migrations
                     b.HasOne("UniTutor.Model.Student", "Student")
                         .WithMany("Comments")
                         .HasForeignKey("stuId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("UniTutor.Model.Tutor", "Tutor")
                         .WithMany("Comments")
                         .HasForeignKey("tutId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Student");
 
@@ -497,7 +497,7 @@ namespace UniTutor.Migrations
                     b.HasOne("UniTutor.Model.Subject", "Subject")
                         .WithMany("Requests")
                         .HasForeignKey("subjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("UniTutor.Model.Tutor", "Tutor")

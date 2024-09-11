@@ -48,8 +48,8 @@ namespace UniTutor.Services
             },
         },
                 Mode = "payment",
-                SuccessUrl = $"{domain}/Tutor/Coinbank",
-                CancelUrl = $"{domain}/Tutor/Coinbank",
+                SuccessUrl = $"{domain}/signin/Tutor/Coinbank",
+                CancelUrl = $"{domain}/signin/Tutor/Coinbank",
             };
 
             var service = new SessionService();

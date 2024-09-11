@@ -254,51 +254,52 @@ namespace UniTutor.Controllers
                 <html>
                 <head>
                 <style>
-                body {{
-                    font-family: Arial, sans-serif;
-                    line-height: 1.6;
-                }}
-                .email-container {{
-                    width: 100%;
-                    padding: 20px;
-                    background-color: lightblue; /* Changed to blue */
-                }}
-                .email-header {{
-                    background-color: #024A7B; /* Changed to blue */
-                    color: white;
-                    padding: 10px 20px;
-                    text-align: center;
-                }}
-                .email-content {{
-                    background-color: white;
-                    padding: 20px;
-                    margin-top: 20px;
-                }}
-                .email-footer {{
-                    margin-top: 20px;
-                    text-align: center;
-                    font-size: 0.9em;
-                    color: #777;
-                }}
-                </style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            line-height: 1.6;
+                        }}
+                        .email-container {{
+                            width: 100%;
+                            padding: 20px;
+                            background-color: lightblue; /* Changed to blue */
+                        }}
+                        .email-header {{
+                            background-color: #024A7B; /* Changed to blue */
+                            color: white;
+                            padding: 10px 20px;
+                            text-align: center;
+                        }}
+                        .email-content {{
+                            background-color: white;
+                            padding: 20px;
+                            margin-top: 20px;
+                        }}
+                        .email-footer {{
+                            margin-top: 20px;
+                            text-align: center;
+                            font-size: 0.9em;
+                            color: #777;
+                        }}
+                        </style>
                 </head>
                 <body>
-                     <div class='email-container'>
-                     <div class='email-header'>
-                     <h1>UniTutor</h1>
-                     <div class='email-content'>
-                        <p>Dear {tutor.firstName},</p>
-                        <p>We are pleased to inform you that your submitted ID and details have been verified, and your tutor account has been accepted.</p>
-                        <p>You can now log in to your account using your password and start posting your subjects on our platform.</p>
-                        <p>If you have any questions or need assistance, please feel free to reach out to our support team at any time.</p>
-                        <p>Best regards,<br>UniTutor Team</p>
-<                       /div>
-                     <div class='email-footer'>
-                        <p>This is an automated message, please do not reply directly to this email.</p>
-                        <p>If you have any questions, feel free to contact our support team at support@unitutor.com.</p>
-                     </div>
-                     </div>
-                     </body>
+                    <div class='email-container'>
+                        <div class='email-header'>
+                            <h1>UniTutor</h1>
+                        </div>
+                        <div class='email-content'>
+                            <p>Dear {tutor.firstName},</p>
+                            <p>We are pleased to inform you that your submitted ID and details have been verified, and your tutor account has been accepted.</p>
+                            <p>You can now log in to your account using your password and start posting your subjects on our platform.</p>
+                            <p>If you have any questions or need assistance, please feel free to reach out to our support team at any time.</p>
+                            <p>Best regards,<br>UniTutor Team</p>
+                        </div>
+                        <div class='email-footer'>
+                            <p>This is an automated message, please do not reply directly to this email.</p>
+                            <p>If you have any questions, feel free to contact our support team at support@unitutor.com.</p>
+                        </div>
+                    </div>
+                </body>
                 </html>";
             await _emailService.SendEmailAsync(tutor.universityMail, emailSubject, emailMessage);
 

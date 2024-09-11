@@ -471,12 +471,12 @@ namespace UniTutor.Migrations
                     b.HasOne("UniTutor.Model.Student", "Student")
                         .WithMany("Comments")
                         .HasForeignKey("stuId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("UniTutor.Model.Tutor", "Tutor")
                         .WithMany("Comments")
                         .HasForeignKey("tutId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Student");
 
@@ -494,7 +494,7 @@ namespace UniTutor.Migrations
                     b.HasOne("UniTutor.Model.Subject", "Subject")
                         .WithMany("Requests")
                         .HasForeignKey("subjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("UniTutor.Model.Tutor", "Tutor")

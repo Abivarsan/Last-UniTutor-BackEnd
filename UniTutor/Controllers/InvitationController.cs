@@ -18,15 +18,20 @@ namespace UniTutor.Controllers
         [HttpPost("invite")]
         public IActionResult InviteFriend([FromBody] InviteRequestDto request)
         {
-            bool invitationSent = _invitationService.InviteFriend(request);
-
-            if (invitationSent)
+            try
             {
-                return Ok();
+                _invitationService.InviteFriend(request);
+                return Ok(new { Message = "Invitation sent successfully." });
             }
-            else
+            catch (InvalidOperationException ex)
             {
-                return BadRequest("Invitation failed: Email is already registered as a tutor."); 
+                
+                return BadRequest(new { Error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                
+                return StatusCode(500, new { Error = "An unexpected error occurred. Please try again later." });
             }
         }
     }
